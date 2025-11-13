@@ -10,7 +10,6 @@ class CustomNavbar extends HTMLElement {
             --light: #ffffff;
             --dark: #000000;
         }
-
         nav {
           background: linear-gradient(135deg, var(--accent) 0%, var(--dark) 100%);
           padding: 1rem 2rem;
@@ -55,12 +54,7 @@ class CustomNavbar extends HTMLElement {
           color: var(--light);
           text-decoration: none;
           padding: 0.3rem 0.8rem;
-          transition: all 0.2s ease;
           border: 2px dashed transparent;
-        }
-        .nav-link:hover {
-          color: #FFD700;
-          border-color: #FFD700;
         }
         .nav-link:active {
             color: #FFD700;
@@ -73,20 +67,10 @@ class CustomNavbar extends HTMLElement {
           border: none;
           cursor: pointer;
           padding: 0;
-          position: fixed;
-          top: 1rem;
-          right: 2rem;
+          position: relative;
           z-index: 1002;
-          opacity: 0;
-          visibility: hidden;
-          transition: opacity 0.5s ease-in-out;
         }
         
-        :host(.nav-is-visible) .nav-toggle {
-            opacity: 1;
-            visibility: visible;
-        }
-
         .hamburger-bar {
           display: block;
           width: 100%;
@@ -127,6 +111,10 @@ class CustomNavbar extends HTMLElement {
           opacity: 1;
           visibility: visible;
         }
+        :host(.nav-open) nav {
+          z-index: 1002;
+        }
+        
         .nav-overlay-content {
           display: flex;
           flex-direction: column;
@@ -142,10 +130,6 @@ class CustomNavbar extends HTMLElement {
           opacity: 0;
           transform: translateY(20px);
           transition: all 0.2s ease 0.2s;
-        }
-        .overlay-link:hover {
-          color: #FFD700;
-          transform: scale(1.1);
         }
         .overlay-link:active {
             color: #FFD700;
@@ -168,12 +152,25 @@ class CustomNavbar extends HTMLElement {
             nav {
                 padding: 1rem 1.5rem;
             }
-            .nav-toggle {
-                right: 1.5rem;
-                top: 1rem;
-            }
         }
 
+        @media (hover: hover) {
+          .nav-link {
+            transition: all 0.2s ease;
+          }
+          .nav-link:hover {
+            color: #FFD700;
+            border-color: #FFD700;
+          }
+          .overlay-link {
+            transition: opacity 0.3s ease 0.2s, transform 0.3s ease 0.2s, 
+                        color 0.2s ease, transform 0.2s ease;
+          }
+          .overlay-link:hover {
+            color: #FFD700;
+            transform: translateY(0) scale(1.1);
+          }
+        }
       </style>
 
       <nav>
@@ -186,15 +183,15 @@ class CustomNavbar extends HTMLElement {
             <a href="#approach" class="nav-link">Approach</a>
             <a href="#contact" class="nav-link">Contact</a>
           </div>
+          
+          <button class="nav-toggle" aria-label="Toggle navigation">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+          </button>
         </div>
       </nav>
       
-      <button class="nav-toggle" aria-label="Toggle navigation">
-        <span class="hamburger-bar"></span>
-        <span class="hamburger-bar"></span>
-        <span class="hamburger-bar"></span>
-      </button>
-
       <div class="nav-overlay">
         <div class="nav-overlay-content">
           <a href="#about" class="overlay-link">About</a>
@@ -207,23 +204,7 @@ class CustomNavbar extends HTMLElement {
 
     const toggleBtn = this.shadowRoot.querySelector('.nav-toggle');
     const links = this.shadowRoot.querySelectorAll('.overlay-link');
-    const nav = this.shadowRoot.querySelector('nav');
     
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.attributeName === 'class') {
-          const isVisible = nav.classList.contains('visible');
-          if (isVisible) {
-            this.classList.add('nav-is-visible');
-          } else {
-            this.classList.remove('nav-is-visible');
-          }
-        }
-      });
-    });
-    observer.observe(nav, { attributes: true });
-
-
     const toggleMenu = () => {
       this.classList.toggle('nav-open');
     };
