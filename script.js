@@ -31,7 +31,7 @@ window.enterSite = function() {
 
             initFooterVisibility();
             ScrollTrigger.refresh();
-        }, 500);
+        },);
     }
 };
 

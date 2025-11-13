@@ -73,7 +73,7 @@ class CustomFooter extends HTMLElement {
         }
         .link-text:hover {
             color: var(--accent);
-            text-decoration: underline;
+            text-decoration: none;
         }
         
         @media (max-width: 600px) {

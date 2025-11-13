@@ -1,4 +1,35 @@
+function wrapTextInSpans(selector) {
+    const elements = document.querySelectorAll(selector);
+    elements.forEach(elem => {
+        const childNodes = Array.from(elem.childNodes);
+        let newContent = '';
+
+        childNodes.forEach(node => {
+            if (node.nodeType === 3) {
+                newContent += node.textContent.split('').map(char =>
+                    char.trim() === '' ? ' ' : `<span><i>${char}</i></span>`
+                ).join('');
+            } else if (node.nodeType === 1) {
+                const innerText = node.textContent;
+                const nodeClasses = node.getAttribute('class') || ''; 
+                
+                const wrappedInner = innerText.split('').map(char =>
+                    char.trim() === '' ? ' ' : `<span class="${nodeClasses}"><i>${char}</i></span>`
+                ).join('');
+                
+                newContent += wrappedInner; 
+            } else {
+                newContent += node.outerHTML || node.textContent;
+            }
+        });
+        elem.innerHTML = newContent;
+    });
+}
+
+
 document.addEventListener('DOMContentLoaded', function() {
+    
+    wrapTextInSpans('.swift-up-text');
     
     gsap.registerPlugin(ScrollTrigger);
 
@@ -14,17 +45,23 @@ document.addEventListener('DOMContentLoaded', function() {
         .from(pair1, {
             opacity: 0,
             y: 30,
-            duration: 1.0,
+            duration: 1,
             ease: "power3.out"
         })
+        .to("#hero-h1 i", {
+            y: 0,
+            duration: 0.6,
+            ease: "power3.out",
+            stagger: 0.04
+        }, "-=0.5") 
+        
         .to(pair1, {
-            opacity: 0.15,
-            y: -150,
+            opacity: 0.095,
             scale: 0.85,
-            rotation: -5,
-            duration: 1.2,
+            rotation: -8, 
+            duration: 1.0,
             ease: "power2.inOut",
-            delay: 1.0
+            delay: 0.3
         })
         .fromTo(pair2,
             { opacity: 0, y: 30 },
@@ -35,5 +72,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 ease: "power3.out"
             }, 
             "-=0.8"
-        );
+        )
+        .to("#hero-h2 i", {
+            y: 0,
+            duration: 0.6,
+            ease: "power3.out",
+            stagger: 0.05
+        }, "-=1.2");
 });

@@ -1,3 +1,12 @@
+
+:root {
+    --primary: #f8c8c8;
+    --secondary: #2d2d2d;
+    --accent: #d93b3b;
+    --light: #ffffff;
+    --dark: #000000;
+}
+
 html, body {
     margin: 0;
     padding: 0;
@@ -12,136 +21,57 @@ body {
     background: linear-gradient(to bottom, var(--light), white);
     animation: fadeIn 1.5s ease-in forwards;
 }
+
+section {
+    perspective: 1000px;
+    transition: background-color 0.8s ease;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--light);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--accent);
+    border-radius: 20px;
+    border: 3px solid var(--light);
+    background-image: linear-gradient(var(--accent), var(--primary));
+}
+
+
 #hero {
     min-height: 100vh;
-}
-:root {
-    --primary: #f8c8c8;
-    --secondary: #2d2d2d;
-    --accent: #d93b3b;
-    --light: #ffffff;
-    --dark: #000000;
-}
-.font-cursive {
-    font-family: 'Caveat', cursive;
-    color: var(--dark);
-}
-
-
-.skill-item {
-    transition: all 0.2s ease;
-    background: #FFFBEA;
-    border: 3px solid #000000;
-    border-radius: 0;
-    box-shadow: 5px 5px 0 #000000;
-    padding: 1.5rem;
-    text-align: center;
-}
-
-.skill-item:hover {
-    transform: scale(1.05) translateY(-5px);
-    box-shadow: 6px 6px 0 #000000;
-}
-#skills h2 {
-    font-family: 'Luckiest Guy', cursive;
-    font-size: 3.5rem;
-    margin-bottom: 2rem;
-    color: #2d2d2d;
-    text-align: center;
-}
-#skills h2 span {
-    color: #a260ff;
-}
-
-.skill-item span {
-    font-family: 'Shadows Into Light', cursive;
-    font-size: 1.2rem;
-    margin-top: 0.5rem;
-    display: block;
-    color: #2d2d2d;
-}
-.skill-item img {
-    filter: sepia(0.5) contrast(1.2) brightness(0.9);
-}
-.vintage-border {
-    border: 4px solid var(--dark);
-    background-clip: padding-box;
-    box-shadow: 8px 8px 0 var(--accent);
-    background-color: var(--primary);
-    position: relative;
-}
-.vintage-border::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('https://www.transparenttextures.com/patterns/cardboard-flat.png');
-    opacity: 0.2;
-    pointer-events: none;
-}
-.vintage-border img {
-    mix-blend-mode: multiply;
-    opacity: 0.9;
-}
-@media (max-width: 768px) {
-    #about .flex-container {
-        flex-direction: column;
-    }
-    
-    #about .image-container {
-        width: 80%;
-        margin: 0 auto 2rem;
-    }
-    
-    #skills .grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    
-    #hero h1 {
-        font-size: 3rem !important;
-    }
-    
-    #contact form {
-        padding: 0 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    #skills .grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    #hero h1 {
-        font-size: 2.5rem !important;
-    }
-    
-    .skill-item {
-        padding: 1rem;
-    }
-}
-
-#hero {
     background: linear-gradient(135deg, var(--accent) 0%, var(--dark) 100%);
 }
+
+ #hero h1 {
+    margin-bottom: 0.5rem;
+}
+
 #about {
     background-color: var(--primary);
     color: var(--secondary);
     padding: 6rem 0 4rem;
     margin-top: 80px;
 }
+
 #about .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
 }
+
 #about .flex-container {
     display: flex;
     gap: 3rem;
     align-items: center;
     flex-wrap: wrap;
 }
+
 #about .image-container {
     flex: 1;
     position: relative;
@@ -150,6 +80,8 @@ body {
     border: 4px solid #000000;
     box-shadow: 5px 5px 0 #000000;
     transform: rotate(-2deg);
+    border-radius: 16px;
+    overflow: hidden;
 }
 
 #about .image-container img {
@@ -180,30 +112,29 @@ body {
     margin-bottom: 1rem;
     color: #2d2d2d;
 }
+
 #skills {
     background-color: var(--primary);
     color: var(--secondary);
     padding-top: 80px;
 }
+
+#skills h2 {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    color: #2d2d2d;
+    text-align: center;
+}
+
+#skills h2 span {
+    color: #a260ff;
+}
+
 #approach {
     background-color: var(--primary);
     color: var(--secondary);
     padding-top: 80px;
-}
-
-.approach-style-card {
-    transition: all 0.2s ease;
-    background: #FFFBEA;
-    border: 3px solid #000000;
-    border-radius: 0;
-    box-shadow: 5px 5px 0 #000000;
-    padding: 1.5rem;
-    text-align: center;
-}
-
-.approach-style-card h3 {
-  font-family: 'Amatic SC', cursive;
-  color: #AC4f98;
 }
 
 #contact {
@@ -214,7 +145,21 @@ body {
 }
 
 #contact .container {
+    max-width: 900px;
+    margin: 0 auto;
     padding: 0 1rem;
+    background-color: #FFFBEA;
+    border: 4px solid #000000;
+    box-shadow: 6px 6px 0 #d93b3b;
+    border-radius: 16px;
+}
+
+#contact h2 {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    color: #2d2d2d;
+    text-align: center;
 }
 
 #contact input[type="text"],
@@ -224,40 +169,134 @@ body {
     color: var(--secondary) !important; 
     border: 2px solid var(--dark) !important;
     box-shadow: 3px 3px 0 var(--accent);
-    transition: box-shadow 0.2s ease;
-    
-   
+    transition: all 0.25s ease;
     font-family: 'Patrick Hand', cursive !important;
     font-size: 1.2rem !important; 
+    border-radius: 8px;
 }
 
 #contact input:focus,
 #contact textarea:focus {
-    box-shadow: 4px 4px 0 var(--dark);
+    box-shadow: 5px 5px 0 var(--dark);
+    transform: translateY(-2px);
 }
 
-#contact h2 {
-    font-family: 'Luckiest Guy', cursive;
-    font-size: 3.5rem;
-    margin-bottom: 2rem;
+#send-message-btn {
+    background-color: #FFD700;
     color: var(--secondary);
+    border: 3px solid var(--dark);
+    box-shadow: 5px 5px 0 var(--accent);
+    border-radius: 12px;
+    transition: all 0.25s ease-in-out;
+    font-size: 1.5rem;
+    padding: 0.8rem 2.5rem; 
+    display: inline-block; 
+    font-family: 'Luckiest Guy', cursive;
+}
+
+#send-message-btn:hover {
+    transform: translateY(-3px) translateX(-3px);
+    box-shadow: 8px 8px 0 var(--dark); 
+    background-color: #FFC107; 
+}
+
+input.invalid,
+textarea.invalid {
+    border-color: #d93b3b !important; 
+    box-shadow: 0 0 5px rgba(217, 59, 59, 0.5);
+}
+
+.error-message {
+    color: #d93b3b;
+    font-size: 0.9rem;
+    font-family: 'Patrick Hand', cursive; 
+    display: none;
+    margin-top: 4px;
+}
+
+.skill-item {
+    transition: all 0.2s ease;
+    background: #FFFBEA;
+    border: 3px solid #000000;
+    border-radius: 16px;
+    box-shadow: 3px 3px 0 #000000;
+    padding: 1.5rem;
     text-align: center;
 }
 
-#contact h2 span {
-    color: #a260ff;
+.skill-item:hover {
+    transform: scale(1.05) translateY(-5px) !important;
+    box-shadow: 6px 6px 0 var(--accent);
 }
 
-.font-contact-header {
-    font-family: 'Luckiest Guy', cursive;
-    font-size: 2.2rem; 
-    line-height: 1;
+.skill-item span {
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    display: block;
+    color: #2d2d2d;
 }
 
-section {
-    perspective: 1000px;
-    transition: background-color 0.8s ease;
+.skill-item img {
+    filter: sepia(0.5) contrast(1.2) brightness(0.9);
 }
+
+.approach-style-card {
+    transition: all 0.2s ease;
+    background: #FFFBEA;
+    border: 3px solid #000000;
+    border-radius: 16px;
+    box-shadow: 5px 5px 0 #000000;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.approach-style-card h3 {
+    font-family: 'Amatic SC', cursive;
+    color: #AC4f98;
+}
+
+.vintage-border {
+    border: 4px solid var(--dark);
+    background-clip: padding-box;
+    box-shadow: 8px 8px 0 var(--accent);
+    background-color: var(--primary);
+    position: relative;
+}
+
+.vintage-border::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://www.transparenttextures.com/patterns/cardboard-flat.png');
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+.vintage-border img {
+    mix-blend-mode: multiply;
+    opacity: 0.9;
+}
+
+.hand-underline {
+    position: relative;
+    display: inline-block;
+}
+
+.hand-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 8px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="8" viewBox="0 0 100 8"><path d="M0,4 C20,8 40,0 60,4 C80,8 100,0 100,4" fill="none" stroke="%23d93b3b" stroke-width="2"/></svg>') repeat-x;
+    background-size: 100px 8px;
+}
+
 .skill-card, .portfolio-item {
     opacity: 0;
     transform: translateY(20px);
@@ -268,10 +307,38 @@ section {
     opacity: 1;
     transform: translateY(0) rotateY(0);
 }
+
+.font-cursive {
+    font-family: 'Caveat', cursive;
+    color: var(--dark);
+}
+
+.font-contact-header {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 2.2rem; 
+    line-height: 1;
+}
+
+.swift-up-text span {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: baseline; 
+  margin-left: -0.1em;
+  margin-right: -0.2em;
+}
+
+.swift-up-text i {
+  font-style: normal;
+  display: inline-block; 
+  transform: translateY(110%);
+  padding: 0.1em ;
+  padding-right: 0.25em;
+}
+
 vintage-cartoon {
-  display: block;
-  margin-bottom: 2rem;
-  filter: sepia(0.5) contrast(1.2) brightness(0.9);
+    display: block;
+    margin-bottom: 2rem;
+    filter: sepia(0.5) contrast(1.2) brightness(0.9);
 }
 
 @keyframes bounceIn {
@@ -307,34 +374,7 @@ vintage-cartoon {
 .hand-drawn {
     animation: handDrawn 0.8s ease-in-out both;
 }
-.hand-underline {
-    position: relative;
-    display: inline-block;
-}
-.hand-underline::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -5px;
-    width: 100%;
-    height: 8px;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="8" viewBox="0 0 100 8"><path d="M0,4 C20,8 40,0 60,4 C80,8 100,0 100,4" fill="none" stroke="%23d93b3b" stroke-width="2"/></svg>') repeat-x;
-    background-size: 100px 8px;
-}
-::-webkit-scrollbar {
-    width: 12px;
-}
 
-::-webkit-scrollbar-track {
-    background: var(--light);
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: var(--accent);
-    border-radius: 20px;
-    border: 3px solid var(--light);
-    background-image: linear-gradient(var(--accent), var(--primary));
-}
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -350,37 +390,39 @@ vintage-cartoon {
     }
 }
 
-#send-message-btn {
-    background-color: #FFD700;
-    color: var(--secondary);
-    border: 3px solid var(--dark);
-    box-shadow: 5px 5px 0 var(--accent);
-    border-radius: 0;
-    transition: all 0.2s ease-in-out;
-    font-size: 1.5rem; 
-    padding: 0.8rem 2.5rem; 
-    display: inline-block; 
+@media (max-width: 768px) {
+    #about .flex-container {
+        flex-direction: column;
+    }
+    
+    #about .image-container {
+        width: 80%;
+        margin: 0 auto 2rem;
+    }
+    
+    #skills .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    #hero h1 {
+        font-size: 3rem !important;
+    }
+    
+    #contact form {
+        padding: 0 1rem;
+    }
 }
 
-#send-message-btn:hover {
-
-    transform: translateY(-3px) translateX(-3px);
-
-    box-shadow: 8px 8px 0 var(--dark); 
-
-    background-color: #FFC107; 
-}
-
-input.invalid,
-textarea.invalid {
-    border-color: #d93b3b !important; 
-    box-shadow: 0 0 5px rgba(217, 59, 59, 0.5);
-}
-
-.error-message {
-    color: #d93b3b;
-    font-size: 0.9rem;
-    font-family: 'Patrick Hand', cursive; 
-    display: none;
-    margin-top: 4px;
+@media (max-width: 480px) {
+    #skills .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    #hero h1 {
+        font-size: 2.5rem !important;
+    }
+    
+    .skill-item {
+        padding: 1rem;
+    }
 }
