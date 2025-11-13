@@ -99,18 +99,6 @@ body {
         grid-template-columns: repeat(3, 1fr);
     }
     
-    .nav-container {
-        flex-direction: column;
-        padding: 1rem;
-    }
-    
-    .nav-links {
-        margin-top: 1rem;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
-    }
-    
     #hero h1 {
         font-size: 3rem !important;
     }
