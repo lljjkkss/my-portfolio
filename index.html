@@ -22,13 +22,26 @@
 
         <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-            <section id="hero" class="min-h-screen flex flex-col items-center justify-center relative overflow-hidden cursor-pointer" data-animation="bounce" onclick="enterSite()">
-            <div class="absolute inset-0 z-0 bg-gradient-to-r from-primary to-dark"></div>
-            <div class="relative z-10 text-center px-4 py-16 sm:py-24">
-                <h1 class="text-6xl md:text-8xl font-bold mb-6 text-white font-amatic">Hi, I'm <span class="text-yellow-300">Tuan Nghia</span></h1>
-                <p class="text-xl md:text-2xl mb-8 text-white max-w-2xl mx-auto">Full Stack Developer</p>
-                <p class="text-lg text-white/80">Click anywhere to enter</p>
-            </div>
+            <section id="hero" class="min-h-screen flex flex-col items-center justify-center relative overflow-hidden cursor-pointer" onclick="enterSite()">
+                <div class="absolute inset-0 z-0 bg-gradient-to-r from-primary to-dark"></div>
+                
+                <div class="relative z-10 text-center px-4 py-16 sm:py-24">
+                    
+                    <div id="hero-pair-1">
+                        <h1 id="hero-h1" class="text-6xl md:text-8xl font-bold mb-6 text-white font-amatic">Hi, I'm <span class="text-yellow-300">Tuan Nghia</span></h1>
+                        <p id="hero-p1" class="text-xl md:text-2xl mb-8 text-white max-w-2xl mx-auto">Full Stack Developer</p>
+                    </div>
+                    
+                    <div id="hero-pair-2" class="absolute top-0 left-0 right-0 bottom-0 flex flex-col justify-center items-center px-4" style="opacity: 0;">
+                        <h1 id="hero-h2" class="text-5xl md:text-7xl font-bold mb-6 text-white font-amatic">
+                            Let me show you...
+                        </h1>
+                        <p id="hero-p2" class="text-lg text-white/80">
+                            Click anywhere to continue
+                        </p>
+                    </div>
+
+                </div>
             </section>
 
             <div id="main-content" class="hidden">
@@ -228,6 +241,7 @@
 
         <custom-footer></custom-footer>
 
+        <script type="module" src="components/hero-animation.js"></script>
         <script type="module" src="components/navbar.js"></script>
         <script type="module" src="components/vintage-button.js"></script>
         <script type="module" src="components/footer.js"></script> 
