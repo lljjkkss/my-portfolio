@@ -62,6 +62,9 @@ class CustomNavbar extends HTMLElement {
           color: #FFD700;
           border-color: #FFD700;
         }
+        .nav-link:active {
+            color: #FFD700;
+        }
 
         .nav-toggle {
           width: 30px;
@@ -116,7 +119,7 @@ class CustomNavbar extends HTMLElement {
           transform: translateX(100%);
           opacity: 0;
           visibility: hidden;
-          transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+          transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
           z-index: 1001;
         }
         :host(.nav-open) .nav-overlay {
@@ -138,16 +141,19 @@ class CustomNavbar extends HTMLElement {
           text-decoration: none;
           opacity: 0;
           transform: translateY(20px);
-          transition: all 0.3s ease 0.3s;
+          transition: all 0.2s ease 0.2s;
         }
         .overlay-link:hover {
           color: #FFD700;
           transform: scale(1.1);
         }
+        .overlay-link:active {
+            color: #FFD700;
+        }
         :host(.nav-open) .overlay-link { opacity: 1; transform: translateY(0); }
-        :host(.nav-open) .overlay-link:nth-child(2) { transition-delay: 0.4s; }
-        :host(.nav-open) .overlay-link:nth-child(3) { transition-delay: 0.5s; }
-        :host(.nav-open) .overlay-link:nth-child(4) { transition-delay: 0.6s; }
+        :host(.nav-open) .overlay-link:nth-child(2) { transition-delay: 0.25s; } 
+        :host(.nav-open) .overlay-link:nth-child(3) { transition-delay: 0.3s; }  
+        :host(.nav-open) .overlay-link:nth-child(4) { transition-delay: 0.35s; } 
 
         .nav-links-desktop { display: none; }
         .nav-toggle { display: block; }
