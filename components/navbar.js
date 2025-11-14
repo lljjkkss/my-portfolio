@@ -204,20 +204,57 @@ class CustomNavbar extends HTMLElement {
     `;
 
     const toggleBtn = this.shadowRoot.querySelector('.nav-toggle');
-    const links = this.shadowRoot.querySelectorAll('.overlay-link');
+    const overlayLinks = this.shadowRoot.querySelectorAll('.overlay-link');
+    const desktopLinks = this.shadowRoot.querySelectorAll('.nav-link');
     const logo = this.shadowRoot.querySelector('.logo');
+    const nav = this.shadowRoot.querySelector('nav');
 
     const toggleMenu = () => {
       this.classList.toggle('nav-open');
     };
 
-    toggleBtn.addEventListener('click', toggleMenu);
-    links.forEach(link => {
-      link.addEventListener('click', toggleMenu);
-    });
-    logo.addEventListener('click', (e) => {
+    const handleSmoothScroll = (e) => {
       e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      const href = e.currentTarget.getAttribute('href');
+      
+      const navHeight = nav.offsetHeight;
+      const offsetValue = navHeight - 140;
+
+      if (window.lenisInstance) {
+        window.lenisInstance.scrollTo(href, { 
+            duration: 1.2, 
+            offset: offsetValue 
+        });
+      } else {
+        const targetElement = document.querySelector(href);
+        if (targetElement) {
+            const top = targetElement.getBoundingClientRect().top + window.pageYOffset - offsetValue;
+            window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+      }
+    };
+    
+    const scrollToTop = (e) => {
+        e.preventDefault();
+        if (window.lenisInstance) {
+            window.lenisInstance.scrollTo(0, { duration: 1.2 });
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    };
+
+    toggleBtn.addEventListener('click', toggleMenu);
+    logo.addEventListener('click', scrollToTop);
+
+    overlayLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        handleSmoothScroll(e);
+        toggleMenu();
+      });
+    });
+
+    desktopLinks.forEach(link => {
+      link.addEventListener('click', handleSmoothScroll);
     });
 
   }
