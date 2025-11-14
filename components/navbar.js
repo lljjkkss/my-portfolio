@@ -38,6 +38,7 @@ class CustomNavbar extends HTMLElement {
           text-decoration: none;
           text-shadow: 2px 2px 0 var(--secondary);
           transition: transform 0.2s ease;
+          cursor: pointer;
         }
         .logo:hover {
             transform: scale(1.05);
@@ -175,7 +176,7 @@ class CustomNavbar extends HTMLElement {
 
       <nav>
         <div class="nav-container">
-          <a href="index.html" class="logo">TUAN NGHIA</a>
+          <a class="logo">TUAN NGHIA</a>
           
           <div class="nav-links-desktop">
             <a href="#about" class="nav-link">About</a>
@@ -204,7 +205,8 @@ class CustomNavbar extends HTMLElement {
 
     const toggleBtn = this.shadowRoot.querySelector('.nav-toggle');
     const links = this.shadowRoot.querySelectorAll('.overlay-link');
-    
+    const logo = this.shadowRoot.querySelector('.logo');
+
     const toggleMenu = () => {
       this.classList.toggle('nav-open');
     };
@@ -213,6 +215,11 @@ class CustomNavbar extends HTMLElement {
     links.forEach(link => {
       link.addEventListener('click', toggleMenu);
     });
+    logo.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
   }
 }
 customElements.define('custom-navbar', CustomNavbar);
